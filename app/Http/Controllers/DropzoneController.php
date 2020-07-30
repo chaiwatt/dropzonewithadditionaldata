@@ -29,8 +29,8 @@ class DropzoneController extends Controller
          $upload->name = $new_name;
          $upload->url = $filelocation;
          $upload->save();
-         $uploads = Upload::get();
-         return response()->json($uploads);  
         }
+        $uploads = Upload::get();
+        return response()->json($uploads);  
     }   
 }
