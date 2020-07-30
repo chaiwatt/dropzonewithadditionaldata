@@ -23,12 +23,13 @@ class DropzoneController extends Controller
             $new_name = str_random(10).".".$file->getClientOriginalExtension();
             $file->move("storage/uploads/" , $new_name);
             $filelocation = "storage/uploads/".$new_name;
+            $upload = new Upload();
+            $upload->user = $request->yourname;
+            $upload->name = $new_name;
+            $upload->url = $filelocation;
+            $upload->save();
          }
-         $upload = new Upload();
-         $upload->user = $request->yourname;
-         $upload->name = $new_name;
-         $upload->url = $filelocation;
-         $upload->save();
+
          $uploads = Upload::get();
          return response()->json($uploads);  
         }
